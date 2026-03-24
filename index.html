@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F2S Workshop @ ICML 2026 — From Frames to Stories</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a1a3e;
+      --primary-dark: #0b0c1e;
+      --accent: #6c5ce7;
+      --accent2: #00cec9;
+      --text: #2d3436;
+      --text-light: #636e72;
+      --bg: #ffffff;
+      --bg-alt: #f8f9fa;
+      --border: #dfe6e9;
+      --nav-height: 56px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--primary-dark);
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    nav .nav-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 6px 12px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: #fff; }
+
+    /* Header / Hero */
+    header {
+      background: var(--primary-dark);
+      background-image: linear-gradient(rgba(11,12,30,0.45), rgba(11,12,30,0.55)), url('img/banner.png');
+      background-size: cover;
+      background-position: center;
+      padding: 120px 20px 70px;
+      text-align: center;
+      color: #fff;
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    header .hero-content {
+      max-width: 850px;
+    }
+    header .workshop-venue {
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+    header h1 {
+      font-size: 2.6em;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    header h1 span {
+      color: var(--accent2);
+    }
+    header .subtitle {
+      font-size: 1.15em;
+      font-weight: 300;
+      opacity: 0.88;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    header .meta {
+      font-size: 15px;
+      opacity: 0.75;
+      line-height: 1.8;
+    }
+    header .meta strong {
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+    }
+    section:nth-child(even) {
+      background: var(--bg-alt);
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 30px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid var(--accent);
+      display: inline-block;
+    }
+
+    /* Overview */
+    .overview-text {
+      font-size: 15.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .key-questions {
+      margin: 24px 0;
+    }
+    .key-questions h3 {
+      font-size: 1.1em;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+    .key-questions ul {
+      list-style: none;
+      padding: 0;
+    }
+    .key-questions li {
+      padding: 10px 0 10px 24px;
+      position: relative;
+      font-size: 15px;
+    }
+    .key-questions li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .key-questions li strong {
+      color: var(--primary);
+    }
+
+    /* Topics */
+    .topics-list {
+      margin: 16px 0;
+      padding-left: 22px;
+    }
+    .topics-list li {
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    /* Call for Papers */
+    .cfp-detail {
+      margin-top: 20px;
+    }
+    .cfp-detail p {
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+    .cfp-detail strong {
+      color: var(--primary);
+    }
+
+    /* Important Dates */
+    .dates-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .dates-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      vertical-align: top;
+    }
+    .dates-table tr:last-child td {
+      border-bottom: none;
+    }
+    .dates-table td:first-child {
+      font-weight: 600;
+      color: var(--primary);
+      width: 45%;
+    }
+    .date-tba {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* Schedule */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .schedule-table th {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .schedule-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14.5px;
+      vertical-align: top;
+    }
+    .schedule-table tr:nth-child(even) {
+      background: rgba(108, 92, 231, 0.03);
+    }
+    .schedule-table .break-row {
+      background: rgba(0, 206, 201, 0.06) !important;
+      font-style: italic;
+      color: var(--text-light);
+    }
+    .schedule-table td:first-child {
+      white-space: nowrap;
+      font-weight: 500;
+      color: var(--primary);
+      width: 160px;
+    }
+    .schedule-note {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    /* Speaker / Organizer Cards */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .person-card {
+      text-align: center;
+    }
+    .person-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--accent);
+    }
+    .person-avatar.alt { background: #00b894; }
+    .person-avatar.alt2 { background: #e17055; }
+    .person-avatar.alt3 { background: #0984e3; }
+    .person-avatar.alt4 { background: #6c5ce7; }
+    .person-avatar.alt5 { background: #d63031; }
+    .person-avatar.alt6 { background: #fdcb6e; color: #2d3436; }
+    .person-card h4 {
+      font-size: 16px;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .person-card h4 a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .person-card h4 a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .person-card .affiliation {
+      font-size: 13.5px;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+    .person-card .talk-title {
+      font-size: 12.5px;
+      color: var(--accent);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* Organizer grid - more columns */
+    .organizers-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .organizers-grid .person-avatar {
+      width: 100px;
+      height: 100px;
+      font-size: 26px;
+    }
+    .organizers-grid .person-card h4 {
+      font-size: 14.5px;
+    }
+    .organizers-grid .person-card .affiliation {
+      font-size: 12.5px;
+    }
+
+    /* TBA placeholder */
+    .tba-placeholder {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-light);
+      font-size: 16px;
+      font-style: italic;
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    /* Contact */
+    .contact-info {
+      font-size: 15.5px;
+      line-height: 2;
+    }
+    .contact-info a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.7em; }
+      header .subtitle { font-size: 1em; }
+      .people-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .organizers-grid { grid-template-columns: repeat(2, 1fr); }
+      nav a { font-size: 12px; padding: 4px 8px; }
+      .schedule-table td:first-child { width: 120px; }
+    }
+    @media (max-width: 480px) {
+      .people-grid { grid-template-columns: 1fr; }
+      .organizers-grid { grid-template-columns: repeat(2, 1fr); }
+      header h1 { font-size: 1.4em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#cfp">Call for Papers</a>
+    <a href="#dates">Important Dates</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#speakers">Speakers</a>
+    <a href="#organizers">Organizers</a>
+    <a href="#pc">Program Committee</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Header -->
+<header>
+  <div class="hero-content">
+    <div class="workshop-venue">ICML 2026 Workshop</div>
+    <h1><span>From Frames to Stories</span> (F2S)</h1>
+    <div class="subtitle">Toward Reliable, Controllable and Trustworthy Long-Horizon Video Generation</div>
+    <div class="meta">
+      <strong>Location:</strong> Seoul, South Korea<br>
+      <strong>Date:</strong> TBA (July 2026)
+    </div>
+  </div>
+</header>
+
+<!-- Overview -->
+<section id="overview">
+  <div class="container">
+    <h2 class="section-title">Overview</h2>
+    <p class="overview-text">
+      Video generation has advanced rapidly for short clips, but minutes-long, multi-shot generation remains unreliable due to compounding errors, identity drift, and weak long-range coherence. Long-horizon video therefore provides a demanding testbed for long-context multimodal modeling, inference-time computation, and interactive generation, aligning closely with core ICML interests.
+    </p>
+    <p class="overview-text">
+      We focus on three bottlenecks: (i) <strong>persistent state representation</strong> &mdash; what to store (and how to compress it) to ensure that identities, scene dynamics, and narrative facts remain consistent; (ii) <strong>interactive control</strong> that steers future states with rich and compositional signals (shot plans, localized edits, multimodal constraints, actions) over long horizons; and (iii) <strong>trustworthy evaluation</strong> via minutes-scale protocols that measure consistency and control adherence in a reproducible, hard-to-game way.
+    </p>
+    <p class="overview-text">
+      We highlight research directions where conceptual and methodological advances, rather than model scale alone, drive progress under realistic academic compute budgets. The program combines invited talks, contributed spotlights, posters/demos, a panel, and breakout groups on open problems with report-back.
+    </p>
+
+    <div class="key-questions">
+      <h3>Key Questions</h3>
+      <ul>
+        <li><strong>Q1 &mdash; Persistent State:</strong> What minimal, compressible, compact state representation (entities, relations, events) must be carried and updated across minutes of generation, and how can models maintain it under tight compute/memory budgets?</li>
+        <li><strong>Q2 &mdash; Interactive Control:</strong> How to enable multi-modal, creator-facing interaction with rich, compositional control signals (shot plans, localized edits, multimodal constraints, actions) over minutes-long generation?</li>
+        <li><strong>Q3 &mdash; Evaluation:</strong> What kinds of benchmarks and protocols can separate long-horizon state/narrative consistency from short-term visual quality, and measure drift and constraint/control satisfaction robustly and reproducibly?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Call for Papers -->
+<section id="cfp">
+  <div class="container">
+    <h2 class="section-title">Call for Papers</h2>
+    <p class="overview-text">
+      We invite submissions on all aspects of long-horizon video generation, with a focus on reliability, controllability, and evaluation. Topics include but are not limited to:
+    </p>
+
+    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Methods &amp; Memory</h3>
+    <ul class="topics-list">
+      <li>Long-context video models; retrieval/external memory</li>
+      <li>Compact state representations; state compression/token budgeting</li>
+      <li>Inference-time refinement and iterative generation</li>
+    </ul>
+
+    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Control &amp; Interaction</h3>
+    <ul class="topics-list">
+      <li>Interactive steering via text, keyframes, sketches, layout, trajectories, and action-conditioned controls</li>
+      <li>Scripting and shot plans; human-in-the-loop tools</li>
+    </ul>
+
+    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Benchmarks &amp; Evaluation</h3>
+    <ul class="topics-list">
+      <li>Minutes-long datasets; entity/event tracking</li>
+      <li>Stress tests for drift/memory; control-adherence and constraint-satisfaction metrics</li>
+      <li>Cost-effective human studies; provenance/misuse-aware considerations</li>
+    </ul>
+
+    <div class="cfp-detail">
+      <p><strong>Submission URL:</strong> <span class="date-tba">TBA (OpenReview)</span></p>
+
+      <p><strong>Format:</strong> All submissions must be in PDF format and anonymized. Submissions are limited to four content pages, including all figures and tables; unlimited additional pages containing references and supplementary materials are allowed. Reviewers may choose to read the supplementary materials but will not be required to. Camera-ready versions may go up to five content pages.</p>
+
+      <p><strong>Style file:</strong> You must format your submission using the ICML 2026 LaTeX style file. Please include the references and supplementary materials in the same PDF as the main paper. The maximum file size for submissions is 50MB. Submissions that violate the ICML style (e.g., by decreasing margins or font sizes) or page limits may be rejected without further review.</p>
+
+      <p><strong>Dual-submission policy:</strong> We welcome ongoing and unpublished work. We will also accept papers that are under review at the time of submission, or that have been recently accepted without published proceedings.</p>
+
+      <p><strong>Non-archival:</strong> The workshop is a non-archival venue and will not have official proceedings. Workshop submissions can be subsequently or concurrently submitted to other venues.</p>
+
+      <p><strong>Visibility:</strong> Submissions and reviews will not be public. Only accepted papers will be made public.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Important Dates -->
+<section id="dates">
+  <div class="container">
+    <h2 class="section-title">Important Dates</h2>
+    <table class="dates-table">
+      <tr>
+        <td>Submission deadline</td>
+        <td><span class="date-tba">TBA</span> (May 2026, AoE)</td>
+      </tr>
+      <tr>
+        <td>Notification to authors</td>
+        <td><span class="date-tba">TBA</span> (June 2026, AoE)</td>
+      </tr>
+      <tr>
+        <td>Camera-ready deadline</td>
+        <td><span class="date-tba">TBA</span> (July 2026)</td>
+      </tr>
+      <tr>
+        <td>Workshop date</td>
+        <td><span class="date-tba">TBA</span> (July 2026, Seoul, South Korea)</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- Schedule -->
+<section id="schedule">
+  <div class="container">
+    <h2 class="section-title">Schedule</h2>
+    <p class="schedule-note">All times are in Korea Standard Time (KST, GMT+9). This is the tentative schedule of the workshop.</p>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Session</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>08:00 &ndash; 08:10</td>
+          <td>Opening Remarks</td>
+        </tr>
+        <tr>
+          <td>08:10 &ndash; 08:55</td>
+          <td><strong>Keynote / Invited Talk 1:</strong> Vincent Sitzmann (MIT)<br><em>Learning World Models with Neural Fields: A Route to Coherent, Controllable Long Videos</em></td>
+        </tr>
+        <tr>
+          <td>08:55 &ndash; 09:25</td>
+          <td><strong>Invited Talk 2:</strong> Xihui Liu (HKU)<br><em>Interactive and Multimodal Visual Generation towards World Models</em></td>
+        </tr>
+        <tr class="break-row">
+          <td>09:25 &ndash; 09:45</td>
+          <td>Coffee Break</td>
+        </tr>
+        <tr>
+          <td>09:45 &ndash; 10:15</td>
+          <td><strong>Invited Talk 3:</strong> Daquan Zhou (PKU)<br><em>Efficient Long-Video Diffusion: Making High-Quality Generation Practical in Training and Inference</em></td>
+        </tr>
+        <tr>
+          <td>10:15 &ndash; 10:45</td>
+          <td><strong>Invited Talk 4:</strong> Pinar Yanardag (Virginia Tech)<br><em>The Art of Taming Video Models: Leveraging Internal Representations for Training-Free Control</em></td>
+        </tr>
+        <tr>
+          <td>10:45 &ndash; 11:25</td>
+          <td>Oral Presentations (Selected Papers)</td>
+        </tr>
+        <tr>
+          <td>11:25 &ndash; 12:10</td>
+          <td>Poster Session 1</td>
+        </tr>
+        <tr class="break-row">
+          <td>12:10 &ndash; 13:40</td>
+          <td>Lunch Break</td>
+        </tr>
+        <tr>
+          <td>13:40 &ndash; 14:10</td>
+          <td><strong>Invited Talk 5:</strong> Bohyung Han (SNU)<br><em>From Understanding to Generation: Toward Semantically Plausible Long-Horizon Video Synthesis</em></td>
+        </tr>
+        <tr>
+          <td>14:10 &ndash; 14:50</td>
+          <td>Panel Discussion + Audience Q&amp;A</td>
+        </tr>
+        <tr>
+          <td>14:50 &ndash; 15:50</td>
+          <td>Poster Session 2</td>
+        </tr>
+        <tr class="break-row">
+          <td>15:50 &ndash; 16:05</td>
+          <td>Coffee Break</td>
+        </tr>
+        <tr>
+          <td>16:05 &ndash; 16:35</td>
+          <td><strong>Invited Talk 6:</strong> Alexandre Alahi (EPFL)<br><em>Stable Video Infinity: Open-Ended Long-Horizon Video Generation with Controllable Streaming Storylines</em></td>
+        </tr>
+        <tr>
+          <td>16:35 &ndash; 16:55</td>
+          <td>Breakout Session + Report-back</td>
+        </tr>
+        <tr>
+          <td>16:55 &ndash; 17:00</td>
+          <td>Closing Remarks</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Invited Speakers -->
+<section id="speakers">
+  <div class="container">
+    <h2 class="section-title">Invited Speakers</h2>
+    <div class="people-grid">
+
+      <div class="person-card">
+        <div class="person-avatar">VS</div>
+        <h4>Vincent Sitzmann</h4>
+        <div class="affiliation">Massachusetts Institute of Technology</div>
+        <div class="talk-title">Learning World Models with Neural Fields: A Route to Coherent, Controllable Long Videos</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt">XL</div>
+        <h4>Xihui Liu</h4>
+        <div class="affiliation">University of Hong Kong</div>
+        <div class="talk-title">Interactive and Multimodal Visual Generation towards World Models</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt2">DZ</div>
+        <h4>Daquan Zhou</h4>
+        <div class="affiliation">Peking University</div>
+        <div class="talk-title">Efficient Long-Video Diffusion: Making High-Quality Generation Practical in Training and Inference</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt3">PY</div>
+        <h4>Pinar Yanardag</h4>
+        <div class="affiliation">Virginia Tech</div>
+        <div class="talk-title">The Art of Taming Video Models: Leveraging Internal Representations for Training-Free Control</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt4">BH</div>
+        <h4>Bohyung Han</h4>
+        <div class="affiliation">Seoul National University</div>
+        <div class="talk-title">From Understanding to Generation: Toward Semantically Plausible Long-Horizon Video Synthesis</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt5">AA</div>
+        <h4>Alexandre Alahi</h4>
+        <div class="affiliation">EPFL</div>
+        <div class="talk-title">Stable Video Infinity: Open-Ended Long-Horizon Video Generation with Controllable Streaming Storylines</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Panelists -->
+<section id="panelists">
+  <div class="container">
+    <h2 class="section-title">Panelists</h2>
+    <div class="tba-placeholder">To be announced.</div>
+  </div>
+</section>
+
+<!-- Accepted Papers -->
+<section id="papers">
+  <div class="container">
+    <h2 class="section-title">Accepted Papers</h2>
+    <div class="tba-placeholder">To be announced after the notification date.</div>
+  </div>
+</section>
+
+<!-- Organizers -->
+<section id="organizers">
+  <div class="container">
+    <h2 class="section-title">Organizers</h2>
+    <div class="people-grid organizers-grid">
+
+      <div class="person-card">
+        <div class="person-avatar">YL</div>
+        <h4>Yu Lu</h4>
+        <div class="affiliation">Zhejiang University</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt">JD</div>
+        <h4>Junhao Dong</h4>
+        <div class="affiliation">Nanyang Technological University</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt2">ES</div>
+        <h4>Enis Simsar</h4>
+        <div class="affiliation">ETH Zurich</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt3">HC</div>
+        <h4>Hila Chefer</h4>
+        <div class="affiliation">Black Forest Labs &amp; Tel Aviv University</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt4">IL</div>
+        <h4>Ismini Lourentzou</h4>
+        <div class="affiliation">University of Illinois Urbana-Champaign</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt5">PK</div>
+        <h4>Piotr Koniusz</h4>
+        <div class="affiliation">Data61, CSIRO</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar alt6">YY</div>
+        <h4>Yi Yang</h4>
+        <div class="affiliation">Zhejiang University</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Program Committee -->
+<section id="pc">
+  <div class="container">
+    <h2 class="section-title">Program Committee</h2>
+    <div class="tba-placeholder">To be announced.</div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-info">
+      <p>For any questions, please contact the organizers:</p>
+      <p>
+        Yu Lu: <a href="mailto:aniki.yulu@zju.edu.cn">aniki.yulu@zju.edu.cn</a><br>
+        Junhao Dong: <a href="mailto:junhao003@ntu.edu.sg">junhao003@ntu.edu.sg</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  &copy; 2026 F2S Workshop &mdash; From Frames to Stories @ ICML 2026
+</footer>
+
+</body>
+</html>
