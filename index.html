@@ -307,12 +307,6 @@
       color: var(--text-light);
       margin-bottom: 6px;
     }
-    .person-card .talk-title {
-      font-size: 12.5px;
-      color: var(--accent);
-      font-style: italic;
-      line-height: 1.4;
-    }
 
     /* Organizer grid - more columns */
     .organizers-grid {
@@ -391,7 +385,6 @@
     <a href="#dates">Important Dates</a>
     <a href="#schedule">Schedule</a>
     <a href="#speakers">Speakers</a>
-    <a href="#panelists">Panelists</a>
     <a href="#papers">Accepted Papers</a>
     <a href="#organizers">Organizers</a>
     <a href="#pc">Program Committee</a>
@@ -407,7 +400,7 @@
     <div class="subtitle">Toward Reliable, Controllable and Trustworthy Long-Horizon Video Generation</div>
     <div class="meta">
       <strong>Location:</strong> Seoul, South Korea<br>
-      <strong>Date:</strong> TBA (July 2026)
+      <strong>Date:</strong> Friday, July 10, 2026
     </div>
   </div>
 </header>
@@ -417,13 +410,13 @@
   <div class="container">
     <h2 class="section-title">Overview</h2>
     <p class="overview-text">
-      Video generation has advanced rapidly for short clips, but minutes-long, multi-shot generation remains unreliable due to compounding errors, identity drift, and weak long-range coherence. Long-horizon video therefore provides a demanding testbed for long-context multimodal modeling, inference-time computation, and interactive generation, aligning closely with core ICML interests.
+      Video generation has advanced rapidly for short clips, yet generating long, multi-shot videos that remain coherent, controllable, and reliable is still an open challenge. Across minutes of generation, current systems often suffer from identity drift, scene inconsistency, narrative breakdown, and weak responsiveness to user intent. These challenges make long-horizon video generation a compelling testbed for long-context multimodal modeling, structured generation, interactive systems, and evaluation.
     </p>
     <p class="overview-text">
-      We focus on three bottlenecks: (i) <strong>persistent state representation</strong> &mdash; what to store (and how to compress it) to ensure that identities, scene dynamics, and narrative facts remain consistent; (ii) <strong>interactive control</strong> that steers future states with rich and compositional signals (shot plans, localized edits, multimodal constraints, actions) over long horizons; and (iii) <strong>trustworthy evaluation</strong> via minutes-scale protocols that measure consistency and control adherence in a reproducible, hard-to-game way.
+      F2S brings together researchers working on the core scientific and practical questions behind this transition from frames to stories. We are broadly interested in methods that maintain consistency over time, support richer forms of control and revision, and enable rigorous evaluation of long-form generation. The workshop welcomes work spanning model design, memory and state tracking, planning, editing, multimodal interaction, datasets, benchmarks, and real-world systems for long-horizon video creation.
     </p>
     <p class="overview-text">
-      We highlight research directions where conceptual and methodological advances, rather than model scale alone, drive progress under realistic academic compute budgets. The program combines invited talks, contributed spotlights, posters/demos, a panel, and breakout groups on open problems with report-back.
+      Our goal is to foster a shared research agenda around reliable, controllable, and trustworthy long-horizon video generation, while creating space for perspectives from generative modeling, multimodal learning, interactive machine learning, and creative applications.
     </p>
 
     <div class="key-questions">
@@ -445,24 +438,28 @@
       We invite submissions on all aspects of long-horizon video generation, with a focus on reliability, controllability, and evaluation. Topics include but are not limited to:
     </p>
 
-    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Methods &amp; Memory</h3>
+    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Models, Memory &amp; Long-Context Generation</h3>
     <ul class="topics-list">
-      <li>Long-context video models; retrieval/external memory</li>
-      <li>Compact state representations; state compression/token budgeting</li>
-      <li>Inference-time refinement and iterative generation</li>
+      <li>Long-horizon and multi-shot video generation models</li>
+      <li>Long-context architectures, memory mechanisms, retrieval, and state tracking</li>
+      <li>Consistency maintenance across identities, scenes, events, and narrative structure</li>
+      <li>Hierarchical generation, planning, and inference-time refinement for long videos</li>
     </ul>
 
-    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Control &amp; Interaction</h3>
+    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Control, Editing &amp; Interactive Systems</h3>
     <ul class="topics-list">
-      <li>Interactive steering via text, keyframes, sketches, layout, trajectories, and action-conditioned controls</li>
-      <li>Scripting and shot plans; human-in-the-loop tools</li>
+      <li>Controllable video generation with text, keyframes, layouts, trajectories, sketches, audio, or other multimodal signals</li>
+      <li>Storyboarding, shot planning, structured prompting, and script-guided generation</li>
+      <li>Video editing, localized revision, iterative refinement, and human-in-the-loop creation tools</li>
+      <li>Interactive, agentic, or creator-facing systems for long-form video generation</li>
     </ul>
 
-    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Benchmarks &amp; Evaluation</h3>
+    <h3 style="font-size:1em; color:var(--primary); margin: 20px 0 10px;">Benchmarks, Data &amp; Trustworthy Evaluation</h3>
     <ul class="topics-list">
-      <li>Minutes-long datasets; entity/event tracking</li>
-      <li>Stress tests for drift/memory; control-adherence and constraint-satisfaction metrics</li>
-      <li>Cost-effective human studies; provenance/misuse-aware considerations</li>
+      <li>Datasets and annotations for long-form, story-level, or multi-shot video generation</li>
+      <li>Benchmarks and protocols for coherence, consistency, controllability, and narrative fidelity</li>
+      <li>Automatic metrics, VLM-based evaluation, and scalable human evaluation for long-horizon video</li>
+      <li>Reliability, robustness, safety, provenance, and reproducibility in generative video systems</li>
     </ul>
 
     <div class="cfp-detail">
@@ -470,7 +467,7 @@
 
       <p><strong>Format:</strong> All submissions must be in PDF format and anonymized. Submissions are limited to four content pages, including all figures and tables; unlimited additional pages containing references and supplementary materials are allowed. Reviewers may choose to read the supplementary materials but will not be required to. Camera-ready versions may go up to five content pages.</p>
 
-      <p><strong>Style file:</strong> You must format your submission using the ICML 2026 LaTeX style file. Please include the references and supplementary materials in the same PDF as the main paper. The maximum file size for submissions is 50MB. Submissions that violate the ICML style (e.g., by decreasing margins or font sizes) or page limits may be rejected without further review.</p>
+      <p><strong>Style file:</strong> You must format your submission using the <a href="https://media.icml.cc/Conferences/ICML2026/Styles/icml2026.zip">ICML 2026 LaTeX style file</a>. Please include the references and supplementary materials in the same PDF as the main paper. The maximum file size for submissions is 50MB. Submissions that violate the ICML style (e.g., by decreasing margins or font sizes) or page limits may be rejected without further review.</p>
 
       <p><strong>Dual-submission policy:</strong> We welcome ongoing and unpublished work. We will also accept papers that are under review at the time of submission, or that have been recently accepted without published proceedings.</p>
 
@@ -488,19 +485,19 @@
     <table class="dates-table">
       <tr>
         <td>Submission deadline</td>
-        <td><span class="date-tba">TBA</span> (May 2026, AoE)</td>
+        <td>April 24, 2026 (AoE)</td>
       </tr>
       <tr>
         <td>Notification to authors</td>
-        <td><span class="date-tba">TBA</span> (June 2026, AoE)</td>
+        <td>May 15, 2026 (AoE)</td>
       </tr>
       <tr>
         <td>Camera-ready deadline</td>
-        <td><span class="date-tba">TBA</span> (July 2026)</td>
+        <td>June 1, 2026</td>
       </tr>
       <tr>
         <td>Workshop date</td>
-        <td><span class="date-tba">TBA</span> (July 2026, Seoul, South Korea)</td>
+        <td>July 10, 2026 (Friday; Seoul, South Korea)</td>
       </tr>
     </table>
   </div>
@@ -525,11 +522,11 @@
         </tr>
         <tr>
           <td>08:10 &ndash; 08:55</td>
-          <td><strong>Keynote / Invited Talk 1:</strong> Vincent Sitzmann (MIT)<br><em>Learning World Models with Neural Fields: A Route to Coherent, Controllable Long Videos</em></td>
+          <td><strong>Keynote / Invited Talk 1</strong></td>
         </tr>
         <tr>
           <td>08:55 &ndash; 09:25</td>
-          <td><strong>Invited Talk 2:</strong> Xihui Liu (HKU)<br><em>Interactive and Multimodal Visual Generation towards World Models</em></td>
+          <td><strong>Invited Talk 2</strong></td>
         </tr>
         <tr class="break-row">
           <td>09:25 &ndash; 09:45</td>
@@ -537,11 +534,11 @@
         </tr>
         <tr>
           <td>09:45 &ndash; 10:15</td>
-          <td><strong>Invited Talk 3:</strong> Daquan Zhou (PKU)<br><em>Efficient Long-Video Diffusion: Making High-Quality Generation Practical in Training and Inference</em></td>
+          <td><strong>Invited Talk 3</strong></td>
         </tr>
         <tr>
           <td>10:15 &ndash; 10:45</td>
-          <td><strong>Invited Talk 4:</strong> Pinar Yanardag (Virginia Tech)<br><em>The Art of Taming Video Models: Leveraging Internal Representations for Training-Free Control</em></td>
+          <td><strong>Invited Talk 4</strong></td>
         </tr>
         <tr>
           <td>10:45 &ndash; 11:25</td>
@@ -557,7 +554,7 @@
         </tr>
         <tr>
           <td>13:40 &ndash; 14:10</td>
-          <td><strong>Invited Talk 5:</strong> Bohyung Han (SNU)<br><em>From Understanding to Generation: Toward Semantically Plausible Long-Horizon Video Synthesis</em></td>
+          <td><strong>Invited Talk 5</strong></td>
         </tr>
         <tr>
           <td>14:10 &ndash; 14:50</td>
@@ -573,7 +570,7 @@
         </tr>
         <tr>
           <td>16:05 &ndash; 16:35</td>
-          <td><strong>Invited Talk 6:</strong> Alexandre Alahi (EPFL)<br><em>Stable Video Infinity: Open-Ended Long-Horizon Video Generation with Controllable Streaming Storylines</em></td>
+          <td><strong>Invited Talk 6</strong></td>
         </tr>
         <tr>
           <td>16:35 &ndash; 16:55</td>
@@ -596,52 +593,46 @@
 
       <div class="person-card">
         <img src="img/Vincent Sitzmann.jpg" alt="Vincent Sitzmann" class="person-avatar" style="object-fit: cover;">
-        <h4>Vincent Sitzmann</h4>
+        <h4><a href="https://www.vincentsitzmann.com/" target="_blank" rel="noopener">Vincent Sitzmann</a></h4>
         <div class="affiliation">Massachusetts Institute of Technology</div>
-        <div class="talk-title">Learning World Models with Neural Fields: A Route to Coherent, Controllable Long Videos</div>
       </div>
 
       <div class="person-card">
         <img src="img/Xihui Liu.jpg" alt="Xihui Liu" class="person-avatar alt" style="object-fit: cover;">
-        <h4>Xihui Liu</h4>
+        <h4><a href="https://xh-liu.github.io/" target="_blank" rel="noopener">Xihui Liu</a></h4>
         <div class="affiliation">University of Hong Kong</div>
-        <div class="talk-title">Interactive and Multimodal Visual Generation towards World Models</div>
       </div>
 
       <div class="person-card">
         <img src="img/Daquan Zhou.png" alt="Daquan Zhou" class="person-avatar alt2" style="object-fit: cover; object-position: center top;">
-        <h4>Daquan Zhou</h4>
+        <h4><a href="https://zhoudaquan.github.io/homepage.io/" target="_blank" rel="noopener">Daquan Zhou</a></h4>
         <div class="affiliation">Peking University</div>
-        <div class="talk-title">Efficient Long-Video Diffusion: Making High-Quality Generation Practical in Training and Inference</div>
       </div>
 
       <div class="person-card">
         <img src="img/Pinar Yanardag.png" alt="Pinar Yanardag" class="person-avatar alt3" style="object-fit: cover; object-position: center top;">
-        <h4>Pinar Yanardag</h4>
+        <h4><a href="https://pinguar.org/" target="_blank" rel="noopener">Pinar Yanardag</a></h4>
         <div class="affiliation">Virginia Tech</div>
-        <div class="talk-title">The Art of Taming Video Models: Leveraging Internal Representations for Training-Free Control</div>
       </div>
 
       <div class="person-card">
         <img src="img/Bohyung Han.png" alt="Bohyung Han" class="person-avatar alt4" style="object-fit: cover; object-position: center 20%;">
-        <h4>Bohyung Han</h4>
+        <h4><a href="https://cv.snu.ac.kr/index.php/bhhan/" target="_blank" rel="noopener">Bohyung Han</a></h4>
         <div class="affiliation">Seoul National University</div>
-        <div class="talk-title">From Understanding to Generation: Toward Semantically Plausible Long-Horizon Video Synthesis</div>
       </div>
 
       <div class="person-card">
         <img src="img/Alexandre Alahi.png" alt="Alexandre Alahi" class="person-avatar alt5" style="object-fit: cover; object-position: center top;">
-        <h4>Alexandre Alahi</h4>
+        <h4><a href="https://people.epfl.ch/alexandre.alahi" target="_blank" rel="noopener">Alexandre Alahi</a></h4>
         <div class="affiliation">EPFL</div>
-        <div class="talk-title">Stable Video Infinity: Open-Ended Long-Horizon Video Generation with Controllable Streaming Storylines</div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- Panelists -->
-<section id="panelists">
+<!-- Panelists (hidden until announced; remove `hidden` and restore nav link to show) -->
+<section id="panelists" hidden>
   <div class="container">
     <h2 class="section-title">Panelists</h2>
     <div class="tba-placeholder">To be announced.</div>
@@ -664,43 +655,43 @@
 
       <div class="person-card">
         <img src="img/Yu Lu.jpg" alt="Yu Lu" class="person-avatar" style="object-fit: cover; object-position: center top;">
-        <h4>Yu Lu</h4>
+        <h4><a href="https://yulu.net.cn/" target="_blank" rel="noopener">Yu Lu</a></h4>
         <div class="affiliation">Zhejiang University</div>
       </div>
 
       <div class="person-card">
         <img src="img/Junhao Dong.jpg" alt="Junhao Dong" class="person-avatar alt" style="object-fit: cover; object-position: center top;">
-        <h4>Junhao Dong</h4>
+        <h4><a href="https://scholar.google.com/citations?user=48A9z_UAAAAJ&hl=en" target="_blank" rel="noopener">Junhao Dong</a></h4>
         <div class="affiliation">Nanyang Technological University</div>
       </div>
 
       <div class="person-card">
         <img src="img/Enis Simsar.jpg" alt="Enis Simsar" class="person-avatar alt2" style="object-fit: cover;">
-        <h4>Enis Simsar</h4>
+        <h4><a href="https://enis.dev/" target="_blank" rel="noopener">Enis Simsar</a></h4>
         <div class="affiliation">ETH Zurich</div>
       </div>
 
       <div class="person-card">
         <img src="img/Hila Chefer.jpg" alt="Hila Chefer" class="person-avatar alt3" style="object-fit: cover;">
-        <h4>Hila Chefer</h4>
+        <h4><a href="https://hila-chefer.github.io/" target="_blank" rel="noopener">Hila Chefer</a></h4>
         <div class="affiliation">Black Forest Labs &amp; Tel Aviv University</div>
       </div>
 
       <div class="person-card">
         <img src="img/Ismini Lourentzou.jpg" alt="Ismini Lourentzou" class="person-avatar alt4" style="object-fit: cover;">
-        <h4>Ismini Lourentzou</h4>
+        <h4><a href="https://ischool.illinois.edu/people/ismini-lourentzou" target="_blank" rel="noopener">Ismini Lourentzou</a></h4>
         <div class="affiliation">University of Illinois Urbana-Champaign</div>
       </div>
 
       <div class="person-card">
         <img src="img/Piotr Koniusz.jpg" alt="Piotr Koniusz" class="person-avatar alt5" style="object-fit: cover; object-position: center top;">
-        <h4>Piotr Koniusz</h4>
+        <h4><a href="https://www.koniusz.com/" target="_blank" rel="noopener">Piotr Koniusz</a></h4>
         <div class="affiliation">Data61, CSIRO</div>
       </div>
 
       <div class="person-card">
         <img src="img/Yi Yang.jpg" alt="Yi Yang" class="person-avatar alt6" style="object-fit: cover;">
-        <h4>Yi Yang</h4>
+        <h4><a href="https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en" target="_blank" rel="noopener">Yi Yang</a></h4>
         <div class="affiliation">Zhejiang University</div>
       </div>
 
@@ -721,11 +712,7 @@
   <div class="container">
     <h2 class="section-title">Contact</h2>
     <div class="contact-info">
-      <p>For any questions, please contact the organizers:</p>
-      <p>
-        Yu Lu: <a href="mailto:aniki.yulu@zju.edu.cn">aniki.yulu@zju.edu.cn</a><br>
-        Junhao Dong: <a href="mailto:junhao003@ntu.edu.sg">junhao003@ntu.edu.sg</a>
-      </p>
+      <p><strong>Contact (Google Group):</strong> <a href="mailto:f2s-workshop@googlegroups.com">f2s-workshop@googlegroups.com</a></p>
     </div>
   </div>
 </section>
