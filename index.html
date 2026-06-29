@@ -325,6 +325,94 @@
       font-size: 12.5px;
     }
 
+    /* Accepted Papers */
+    .paper-group {
+      margin-top: 20px;
+      padding: 18px 20px 16px;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--accent);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(26, 26, 62, 0.06);
+    }
+    .paper-group + .paper-group {
+      margin-top: 32px;
+    }
+    .paper-group.oral-papers {
+      border-left-color: #d39b16;
+      background: linear-gradient(90deg, rgba(211, 155, 22, 0.055), #fff 38%);
+    }
+    .paper-group.poster-papers {
+      border-left-color: var(--accent2);
+      background: linear-gradient(90deg, rgba(0, 206, 201, 0.09), #fff 38%);
+    }
+    .paper-group h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05em;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+    .paper-group h3::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d39b16;
+      flex: 0 0 auto;
+    }
+    .paper-group.poster-papers h3::before {
+      background: var(--accent2);
+    }
+    .paper-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .paper-list li {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .paper-list li:last-child {
+      border-bottom: none;
+    }
+    .paper-list a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .paper-list a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    /* Program Committee */
+    .pc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px 24px;
+      margin-top: 18px;
+    }
+    .pc-member {
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pc-member strong {
+      display: block;
+      color: var(--primary);
+      font-size: 14.5px;
+      line-height: 1.35;
+      margin-bottom: 2px;
+    }
+    .pc-member span {
+      display: block;
+      color: var(--text-light);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
     /* TBA placeholder */
     .tba-placeholder {
       text-align: center;
@@ -365,12 +453,15 @@
       header .subtitle { font-size: 1em; }
       .people-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .organizers-grid { grid-template-columns: repeat(2, 1fr); }
+      .pc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px 18px; }
       nav a { font-size: 12px; padding: 4px 8px; }
       .schedule-table td:first-child { width: 120px; }
     }
     @media (max-width: 480px) {
       .people-grid { grid-template-columns: 1fr; }
       .organizers-grid { grid-template-columns: repeat(2, 1fr); }
+      .pc-grid { grid-template-columns: 1fr; }
+      .paper-group { padding: 16px 14px 14px; }
       header h1 { font-size: 1.4em; }
     }
   </style>
@@ -649,7 +740,92 @@
 <section id="papers">
   <div class="container">
     <h2 class="section-title">Accepted Papers</h2>
-    <div class="tba-placeholder">To be announced after the notification date.</div>
+    <div class="paper-group oral-papers">
+      <h3>Oral Presentations</h3>
+      <ul class="paper-list">
+        <li>
+          <a href="https://openreview.net/forum?id=Y1Ba7ChhzE" target="_blank" rel="noopener">Video models are zero-shot learners and reasoners</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=YIqjb9fi7o" target="_blank" rel="noopener">Temporal State Transport in Video Generation: Diagnosing and Correcting Spectral Imbalance</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=TxBsm6KXhj" target="_blank" rel="noopener">Seoul World Model: Grounding World Simulation Models in a Real-World Metropolis</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=K7l2lApyjN" target="_blank" rel="noopener">Addressable Memory for Video World Models</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=KNqemhzbws" target="_blank" rel="noopener">Making Time Editable in Video Diffusion Transformers</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="paper-group poster-papers">
+      <h3>Poster Presentations</h3>
+      <ul class="paper-list">
+        <li>
+          <a href="https://openreview.net/forum?id=yNJnDdkjLX" target="_blank" rel="noopener">Because Flat Retrieval Is Not Enough: VideoGraph for Long Video Question Answering</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=baNgy1T03Z" target="_blank" rel="noopener">AQUA: Aligned Query Fusion for Reference-Unbiased and Temporally Consistent Video Motion Transfer</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=rk0IXch4hW" target="_blank" rel="noopener">BankCodec: Compact Memory Banks for Multi-Turn Novel View Synthesis</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=9tDBSUBlAm" target="_blank" rel="noopener">EduStory: A Unified Framework for Pedagogically-Consistent Multi-Shot STEM Instructional Video Generation</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=X0V9gRe7oC" target="_blank" rel="noopener">Quantized Keys Steal Attention: Bias Correction for KV-Cache Compression in Video Diffusion</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=dQG996QT9x" target="_blank" rel="noopener">EventBank-G: Compact Event Memory for Controllable Multi-Shot Video Generation</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=8QZBcYBMRZ" target="_blank" rel="noopener">Dual-PAG: Bidirectional Perturbed-Attention Guidance for Residue-Free Video Editing</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=BuKIWvsqgg" target="_blank" rel="noopener">Blind Frames, Broken Stories: the Verification Bottleneck in Scientific Video Generation</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=E6nKvULQMq" target="_blank" rel="noopener">V2V-Bench: A Comprehensive Benchmark for Video-to-Video Generation Evaluation</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=Z6btrHmuZF" target="_blank" rel="noopener">On the Resilience of Text-to-Video Diffusion Models to Hardware Faults</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=u9sJO2dz0n" target="_blank" rel="noopener">Expressively Controllable Talking Face Generation via Identity-Aware AU Conditioning and Neutral-Reference Debiasing</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=iP2XfEKsLb" target="_blank" rel="noopener">HeroWorld: Long-Horizon Action-Conditioned World Models for Third-Person Games</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=yyB1Z72U7J" target="_blank" rel="noopener">Time-Correlated Video Bridge Matching</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=MZT5AZoXEU" target="_blank" rel="noopener">What Matters in Clean-Context Autoregressive Video Diffusion</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=gyMUc6kwuT" target="_blank" rel="noopener">Scalable Robot Policy Evaluation via Autoregressive Video World Models</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=PYCDhJbulV" target="_blank" rel="noopener">Imagined Memorisation: Training-Data Leakage in Model-Based RL World Models</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=ktJIvoP1nH" target="_blank" rel="noopener">VideoDiffCR: Content-Aware Adaptive Token Pruning for Autoregressive Video Diffusion Transformers</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=6yJU1aL2KW" target="_blank" rel="noopener">AllocMV: Optimal Resource Allocation for Music Video Generation via Structured Persistent State</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=2GnQ41AwLJ" target="_blank" rel="noopener">Accelerating Video Inverse Problem Solvers with Autoregressive Diffusion Models</a>
+        </li>
+        <li>
+          <a href="https://openreview.net/forum?id=iIQtjwKD3X" target="_blank" rel="noopener">Inference-Time On-Manifold Steering for Autoregressive Long Video Generation</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -709,7 +885,32 @@
 <section id="pc">
   <div class="container">
     <h2 class="section-title">Program Committee</h2>
-    <div class="tba-placeholder">To be announced.</div>
+    <div class="pc-grid">
+      <div class="pc-member"><strong>Siheng Wang</strong><span>PKU</span></div>
+      <div class="pc-member"><strong>Meher Gitika Karumuri</strong><span>Amazon</span></div>
+      <div class="pc-member"><strong>YuXin Song</strong><span>Baidu</span></div>
+      <div class="pc-member"><strong>Wensong Song</strong><span>ZJU</span></div>
+      <div class="pc-member"><strong>Rongchao Zhang</strong><span>PKU</span></div>
+      <div class="pc-member"><strong>Jiao Liu</strong><span>NTU</span></div>
+      <div class="pc-member"><strong>Haofeng Wu</strong><span>NTU</span></div>
+      <div class="pc-member"><strong>Zhiwei Shang</strong><span>CUHK</span></div>
+      <div class="pc-member"><strong>Advitya Gemawat</strong><span>Microsoft</span></div>
+      <div class="pc-member"><strong>Yanhao Jia</strong><span>NTU</span></div>
+      <div class="pc-member"><strong>Shizun Wang</strong><span>NUS</span></div>
+      <div class="pc-member"><strong>Yuqing Wen</strong><span>NUS</span></div>
+      <div class="pc-member"><strong>Chenyang Miao</strong><span>XJTU</span></div>
+      <div class="pc-member"><strong>Xinyi Wu</strong><span>SJTU</span></div>
+      <div class="pc-member"><strong>Xuanhui Lin</strong><span>LZU</span></div>
+      <div class="pc-member"><strong>Xu Zhang</strong><span>ZJU</span></div>
+      <div class="pc-member"><strong>Jiandong Su</strong><span>Sensetime</span></div>
+      <div class="pc-member"><strong>Shuai Zhao</strong><span>NTU</span></div>
+      <div class="pc-member"><strong>Mingrong Gong</strong><span>NTU</span></div>
+      <div class="pc-member"><strong>Yingzhuo Jiang</strong><span>NJU</span></div>
+      <div class="pc-member"><strong>Yokila Arora</strong><span>Walmart</span></div>
+      <div class="pc-member"><strong>Zhengdao Li</strong><span>PKU</span></div>
+      <div class="pc-member"><strong>Naseer Shaik</strong><span>Google</span></div>
+      <div class="pc-member"><strong>Junjie Yang</strong><span>ZJU</span></div>
+    </div>
   </div>
 </section>
 
