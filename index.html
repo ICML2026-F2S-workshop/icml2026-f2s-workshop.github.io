@@ -461,10 +461,17 @@
       letter-spacing: 1.6px;
       text-transform: uppercase;
     }
+    .sponsor-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 8px;
+    }
     .sponsor-content h3 {
       color: var(--primary);
       font-size: 1.2em;
-      margin-bottom: 8px;
+      margin-bottom: 0;
     }
     .sponsor-content p {
       color: var(--text);
@@ -491,6 +498,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      flex-shrink: 0;
     }
     .sponsor-links a {
       display: inline-block;
@@ -560,6 +568,8 @@
       .pc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px 18px; }
       .sponsor-panel { grid-template-columns: 1fr; gap: 18px; }
       .sponsor-logo-area { justify-content: flex-start; min-height: auto; padding: 0 0 18px; border-right: none; border-bottom: 1px solid var(--border); }
+      .sponsor-heading { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .sponsor-links { flex-shrink: 1; }
       nav a { font-size: 12px; padding: 4px 8px; }
       .schedule-table { min-width: 640px; }
       .schedule-table td:first-child { width: 120px; }
@@ -1057,8 +1067,16 @@
         </a>
       </div>
       <div class="sponsor-content">
-        <div class="sponsor-label">Hiring Sponsor</div>
-        <h3>Cantina Labs</h3>
+        <div class="sponsor-heading">
+          <div>
+            <div class="sponsor-label">Hiring Sponsor</div>
+            <h3>Cantina Labs</h3>
+          </div>
+          <div class="sponsor-links">
+            <a href="https://cantina.com/careers" target="_blank" rel="noopener" class="primary-link">Careers</a>
+            <a href="https://cantina.com" target="_blank" rel="noopener" class="secondary-link">Visit Cantina</a>
+          </div>
+        </div>
         <p>
           Cantina Labs builds lifelike AI characters and the video generation models behind them. They are growing their global research team, especially their Singapore lab, to work on consistency, control, and trustworthy evaluation for long-horizon generation.
         </p>
@@ -1071,10 +1089,6 @@
           <span>Video Generation</span>
           <span>Model Evaluation</span>
           <span>Singapore</span>
-        </div>
-        <div class="sponsor-links">
-          <a href="https://cantina.com/careers" target="_blank" rel="noopener" class="primary-link">Careers</a>
-          <a href="https://cantina.com" target="_blank" rel="noopener" class="secondary-link">Visit Cantina</a>
         </div>
       </div>
     </div>
