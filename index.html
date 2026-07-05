@@ -259,6 +259,18 @@
       color: var(--text-light);
       margin-bottom: 16px;
     }
+    .schedule-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .session-note {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-light);
+      font-size: 12.5px;
+      font-weight: 400;
+      font-style: normal;
+    }
 
     /* Speaker / Organizer Cards */
     .people-grid {
@@ -413,6 +425,98 @@
       line-height: 1.35;
     }
 
+    /* Sponsors */
+    .sponsor-panel {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 26px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(26, 26, 62, 0.05);
+    }
+    .sponsor-logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 130px;
+      padding-right: 26px;
+      border-right: 1px solid var(--border);
+    }
+    .sponsor-logo {
+      width: 180px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .sponsor-label {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+    .sponsor-content h3 {
+      color: var(--primary);
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+    .sponsor-content p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .sponsor-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 18px;
+    }
+    .sponsor-roles span {
+      padding: 5px 10px;
+      border: 1px solid rgba(0, 206, 201, 0.35);
+      border-radius: 999px;
+      color: var(--primary);
+      background: rgba(0, 206, 201, 0.08);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .sponsor-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .sponsor-links a {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .sponsor-links .primary-link {
+      color: var(--primary-dark);
+      background: var(--accent2);
+      border: 1px solid var(--accent2);
+    }
+    .sponsor-links .secondary-link {
+      color: var(--primary);
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    .sponsor-links a:hover {
+      color: var(--primary-dark);
+      background: rgba(0, 206, 201, 0.16);
+      border-color: var(--accent2);
+    }
+
     /* TBA placeholder */
     .tba-placeholder {
       text-align: center;
@@ -454,7 +558,10 @@
       .people-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
       .organizers-grid { grid-template-columns: repeat(2, 1fr); }
       .pc-grid { grid-template-columns: repeat(2, 1fr); gap: 12px 18px; }
+      .sponsor-panel { grid-template-columns: 1fr; gap: 18px; }
+      .sponsor-logo-area { justify-content: flex-start; min-height: auto; padding: 0 0 18px; border-right: none; border-bottom: 1px solid var(--border); }
       nav a { font-size: 12px; padding: 4px 8px; }
+      .schedule-table { min-width: 640px; }
       .schedule-table td:first-child { width: 120px; }
     }
     @media (max-width: 480px) {
@@ -462,6 +569,8 @@
       .organizers-grid { grid-template-columns: repeat(2, 1fr); }
       .pc-grid { grid-template-columns: 1fr; }
       .paper-group { padding: 16px 14px 14px; }
+      .sponsor-panel { padding: 20px 16px; }
+      .sponsor-logo { width: 150px; }
       header h1 { font-size: 1.4em; }
     }
   </style>
@@ -479,6 +588,7 @@
     <a href="#papers">Accepted Papers</a>
     <a href="#organizers">Organizers</a>
     <a href="#pc">Program Committee</a>
+    <a href="#sponsors">Sponsors</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -598,81 +708,100 @@
 <section id="schedule">
   <div class="container">
     <h2 class="section-title">Schedule</h2>
-    <p class="schedule-note">All times are in Korea Standard Time (KST, GMT+9). This is the tentative schedule of the workshop.</p>
-    <table class="schedule-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Session</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>08:00 &ndash; 08:10</td>
-          <td>Opening Remarks</td>
-        </tr>
-        <tr>
-          <td>08:10 &ndash; 08:55</td>
-          <td><strong>Keynote / Invited Talk 1</strong></td>
-        </tr>
-        <tr>
-          <td>08:55 &ndash; 09:25</td>
-          <td><strong>Invited Talk 2</strong></td>
-        </tr>
-        <tr class="break-row">
-          <td>09:25 &ndash; 09:45</td>
-          <td>Coffee Break</td>
-        </tr>
-        <tr>
-          <td>09:45 &ndash; 10:15</td>
-          <td><strong>Invited Talk 3</strong></td>
-        </tr>
-        <tr>
-          <td>10:15 &ndash; 10:45</td>
-          <td><strong>Invited Talk 4</strong></td>
-        </tr>
-        <tr>
-          <td>10:45 &ndash; 11:25</td>
-          <td>Oral Presentations (Selected Papers)</td>
-        </tr>
-        <tr>
-          <td>11:25 &ndash; 12:10</td>
-          <td>Poster Session 1</td>
-        </tr>
-        <tr class="break-row">
-          <td>12:10 &ndash; 13:40</td>
-          <td>Lunch Break</td>
-        </tr>
-        <tr>
-          <td>13:40 &ndash; 14:10</td>
-          <td><strong>Invited Talk 5</strong></td>
-        </tr>
-        <tr>
-          <td>14:10 &ndash; 14:50</td>
-          <td>Panel Discussion + Audience Q&amp;A</td>
-        </tr>
-        <tr>
-          <td>14:50 &ndash; 15:50</td>
-          <td>Poster Session 2</td>
-        </tr>
-        <tr class="break-row">
-          <td>15:50 &ndash; 16:05</td>
-          <td>Coffee Break</td>
-        </tr>
-        <tr>
-          <td>16:05 &ndash; 16:35</td>
-          <td><strong>Invited Talk 6</strong></td>
-        </tr>
-        <tr>
-          <td>16:35 &ndash; 16:55</td>
-          <td>Breakout Session + Report-back</td>
-        </tr>
-        <tr>
-          <td>16:55 &ndash; 17:00</td>
-          <td>Closing Remarks</td>
-        </tr>
-      </tbody>
-    </table>
+    <p class="schedule-note">All times are in Korea Standard Time (KST, GMT+9).</p>
+    <div class="schedule-scroll">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Time (KST)</th>
+            <th>Session</th>
+            <th>Speaker / Affiliation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>08:00 &ndash; 08:10</td>
+            <td>Opening</td>
+            <td>Organizers</td>
+          </tr>
+          <tr>
+            <td>08:10 &ndash; 08:55</td>
+            <td><strong>Invited Talk 1 / Keynote</strong></td>
+            <td>Vincent Sitzmann, MIT</td>
+          </tr>
+          <tr>
+            <td>08:55 &ndash; 09:25</td>
+            <td><strong>Invited Spotlight Talk</strong></td>
+            <td>Yukang Chen, NVIDIA Research</td>
+          </tr>
+          <tr class="break-row">
+            <td>09:25 &ndash; 09:45</td>
+            <td>Coffee Break</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>09:45 &ndash; 10:15</td>
+            <td><strong>Invited Talk 2</strong></td>
+            <td>Alexandre Alahi, EPFL</td>
+          </tr>
+          <tr>
+            <td>10:15 &ndash; 10:45</td>
+            <td><strong>Invited Talk 3</strong></td>
+            <td>Bohyung Han, Seoul National University</td>
+          </tr>
+          <tr>
+            <td>10:45 &ndash; 11:15</td>
+            <td><strong>Invited Talk 4</strong></td>
+            <td>Xihui Liu, The University of Hong Kong</td>
+          </tr>
+          <tr>
+            <td>11:15 &ndash; 12:00</td>
+            <td>Oral Presentations I <span class="session-note">3 papers, 15 min each</span></td>
+            <td>Selected Papers 1&ndash;3</td>
+          </tr>
+          <tr class="break-row">
+            <td>12:00 &ndash; 12:10</td>
+            <td>Poster Setup / Lunch Transition</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr class="break-row">
+            <td>12:10 &ndash; 13:40</td>
+            <td>Lunch</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>13:40 &ndash; 14:10</td>
+            <td><strong>Invited Talk 5</strong></td>
+            <td>Pinar Yanardag, Virginia Tech</td>
+          </tr>
+          <tr>
+            <td>14:10 &ndash; 14:40</td>
+            <td>Oral Presentations II <span class="session-note">2 papers, 15 min each</span></td>
+            <td>Selected Papers 4&ndash;5</td>
+          </tr>
+          <tr>
+            <td>14:40 &ndash; 15:50</td>
+            <td>Poster Session</td>
+            <td>Accepted papers</td>
+          </tr>
+          <tr class="break-row">
+            <td>15:50 &ndash; 16:05</td>
+            <td>Coffee Break</td>
+            <td>&mdash;</td>
+          </tr>
+          <tr>
+            <td>16:05 &ndash; 16:35</td>
+            <td><strong>Invited Talk 6</strong></td>
+            <td>Daquan Zhou, Peking University</td>
+          </tr>
+          <tr>
+            <td>16:35 &ndash; 17:00</td>
+            <td>Best Paper Award &amp; Closing Remarks</td>
+            <td>Organizers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -910,6 +1039,41 @@
       <div class="pc-member"><strong>Zhengdao Li</strong><span>PKU</span></div>
       <div class="pc-member"><strong>Naseer Shaik</strong><span>Google</span></div>
       <div class="pc-member"><strong>Junjie Yang</strong><span>ZJU</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Sponsors -->
+<section id="sponsors">
+  <div class="container">
+    <h2 class="section-title">Sponsors</h2>
+    <div class="sponsor-panel">
+      <div class="sponsor-logo-area">
+        <a href="https://cantina.com" target="_blank" rel="noopener" aria-label="Visit Cantina">
+          <img src="img/cantina-logo.svg" alt="Cantina" class="sponsor-logo">
+        </a>
+      </div>
+      <div class="sponsor-content">
+        <div class="sponsor-label">Hiring Sponsor</div>
+        <h3>Cantina Labs</h3>
+        <p>
+          Cantina Labs builds lifelike AI characters and the video generation models behind them. They are growing their global research team, especially their Singapore lab, to work on consistency, control, and trustworthy evaluation for long-horizon generation.
+        </p>
+        <p>
+          Featured hiring areas include research and engineering roles across video generation, image models, memory systems, model evaluation, and AI product engineering.
+        </p>
+        <div class="sponsor-roles" aria-label="Featured hiring areas">
+          <span>Research Scientist</span>
+          <span>ML Engineer</span>
+          <span>Video Generation</span>
+          <span>Model Evaluation</span>
+          <span>Singapore</span>
+        </div>
+        <div class="sponsor-links">
+          <a href="https://cantina.com/careers" target="_blank" rel="noopener" class="primary-link">Careers</a>
+          <a href="https://cantina.com" target="_blank" rel="noopener" class="secondary-link">Visit Cantina</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
